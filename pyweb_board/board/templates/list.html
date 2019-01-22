@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>게시판</h2>
+    게시물수 : {{boardCount}}<br>
+    <a href="write">글쓰기</a>
+    <table border="1">
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>제목</th>
+            <th>날짜</th>
+            <th>조회수</th>
+            <th>첨부파일</th>
+            <th>다운로드</th>
+        </tr>
+        {% for row in boardList %}
+        <tr align="center">
+            <td>{{row.idx}}</td>
+            <td>{{row.writer}}</td>
+            <td><a href="detail?idx={{row.idx}}">{{row.title}}</a></td>
+            <td>{{row.post_date|date:"Y-m-d"}}</td>
+            <td>{{row.hit}}</td>
+            <td>
+                {% if row.filesize > 0 %}
+                <a href="download?idx={{row.idx}}">
+                    <!--static에 있는 파일들을 불러오려면 이렇게 사용해야 함-->
+                    <img src = "{% static "images/1.png" %}"></a>
+                {% endif %}
+            </td>
+            <td>{{row.down}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
