@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf031356-f951-4c6d-b078-77d2f1cd1c83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shop/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shop/templates/cart_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shop/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shop/templates/join.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shop/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shop/templates/product_detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shop/templates/product_edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shop/templates/product_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shop/templates/product_write.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pyweb_board/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pyweb_board/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pyweb_board/board/templates/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/../pyweb_board/board/templates/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pyweb_board/board/templates/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../pyweb_board/board/templates/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pyweb_board/board/templates/write.html" beforeDir="false" afterPath="$PROJECT_DIR$/../pyweb_board/board/templates/write.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pyweb_board/board/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pyweb_board/board/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="bf031356-f951-4c6d-b078-77d2f1cd1c83" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +154,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -250,7 +234,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="953" y="0" width="974" height="1047" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2767094" />
