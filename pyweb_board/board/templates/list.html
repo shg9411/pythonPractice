@@ -7,6 +7,34 @@
 </head>
 <body>
     <h2>게시판</h2>
+    <form method="post">
+        {% csrf_token %}
+        <select name = "search_option">
+            {% if search_option == "writer" %}
+            <option value ="writer" selected>이름</option>
+            <option value="title">제목</option>
+            <option value="content">내용</option>
+            <option value="all">이름+제목+내용</option>
+            {% elif search_option == "title" %}
+            <option value ="writer">이름</option>
+            <option value="title" selected>제목</option>
+            <option value="content">내용</option>
+            <option value="all">이름+제목+내용</option>
+            {% elif search_option == "content" %}
+            <option value ="writer">이름</option>
+            <option value="title">제목</option>
+            <option value="content" selected>내용</option>
+            <option value="all">이름+제목+내용</option>
+            {% else %}
+            <option value ="writer">이름</option>
+            <option value="title">제목</option>
+            <option value="content">내용</option>
+            <option value="all" selected>이름+제목+내용</option>
+            {% endif %}
+        </select>
+        <input name = "search" value="{{search}}">
+        <input type="submit" value="검색">
+    </form>
     게시물수 : {{boardCount}}<br>
     <a href="write">글쓰기</a>
     <table border="1">

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>로그인</h2>
+<form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>아이디</td>
+            <td>
+                <input id="{{form.username.id_for_label}}" maxlength="15"
+                       name="{{form.username.html_name}}">
+            </td>
+        </tr>
+        <tr>
+            <td>비밀번호</td>
+            <td>
+                <input id="{{ form.password.id_for_label}}" maxlength="120"
+                       name="{{form.password.html_name}}" type="password">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="submit" value="로그인"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

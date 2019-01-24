@@ -10,7 +10,29 @@ from django.utils.http import urlquote
 #파일이 업로드 될 디렉토리 지정
 UPLOAD_DIR = "d:/upload/"
 
+@csrf_exempt
 def list(request):
+    try:
+        search_option=request.POST["search_option"]
+    except:
+        search_option="writer"
+
+    try:
+        search=request.POST["search"]
+    except:
+        search=""
+
+    if search_option=="all":
+        boardCount=Board.objects.filter(Q(writer__contains=search)|Q(title__contains=search)|
+                                        Q(content__contains=search)).count()
+    elif search_option=="writer":
+        boardCount = Board.objects.filter(Q(writer__contains=search)).count()
+    elif search_option=="title":
+        boardCount = Board.objects.filter(Q(title__contains=search)).count()
+    elif search_option=="content":
+        boardCount = Board.objects.filter(Q(content__contains=search)).count()
+
+
     #레코드 갯수
     boardCount = Board.objects.count()
     #글번호 내림차순
@@ -81,6 +103,8 @@ def detail(request):
 @csrf_exempt
 def reply_insert(request):
     id = request.POST["idx"]
+    if request.POST["content"] == "":
+        return HttpResponseRedirect("detail?idx="+id)
     dto = Comment(board_idx=id, writer=request.POST["writer"],
                   content=request.POST["content"])
     dto.save()
