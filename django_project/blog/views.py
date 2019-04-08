@@ -1,6 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from hitcount.views import HitCountDetailView
 from django.views.generic import (
     ListView,
     DetailView,
@@ -8,7 +11,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post
+from .models import Post, Comment
 
 
 def home(request):
@@ -37,8 +40,9 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
-class PostDetailView(DetailView):
+class PostDetailView(HitCountDetailView):
     model = Post
+    count_hit = True
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -78,3 +82,32 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
+
+
+@login_required
+def comment_write(request, pk):
+    if request.method == 'POST':
+        post = get_object_or_404(Post, pk=pk)
+        body = request.POST.get('body')
+        author = request.user
+
+        if not body:
+            messages.info(request, '댓글을 입력하세요')
+            return redirect('post-detail', pk=pk)
+
+        Comment.objects.create(post=post, author=author, body=body)
+        return redirect('post-detail', pk=pk)
+
+
+@login_required
+def comment_delete(request, post_pk, pk):
+    comment = get_object_or_404(Comment, pk = pk)
+
+    user = request.user
+    if user != comment.author:
+        messages.info(request, '글쓴이만 지울 수 있습니다.')
+        return redirect('post-detail', pk = post_pk)
+
+    comment.delete()
+    return redirect('post-detail', pk = post_pk)
+

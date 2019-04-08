@@ -25,13 +25,13 @@ SECRET_KEY = 'v@&e*gk$_c4*n6g1do%y%hxq@6qyd=k%3^)#+uj9@uu*53sz3t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', ]
+ALLOWED_HOSTS = '*'
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'letsencrypt',
+    'hitcount',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
