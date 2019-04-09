@@ -30,7 +30,7 @@
 <hr>
 {% for comment in object.comments.all %}
 <p><strong><a href="{% url 'user-posts' comment.author.username %}">{{comment.author}}</a></strong> {{comment.body}}</p>
-<p>{{comment.date_posted}} <a href = "{% url 'comment-delete' post_pk=post.pk pk=comment.pk %}">삭제</a></p>
+<p>{{comment.date_posted}} <a href = "{% url 'comment-delete' post_pk=post.pk pk=comment.pk %}">삭제</a> <a href="">답글</a></p>
 <hr>
 {% empty %}
 <p>댓글이 없습니다.</p>

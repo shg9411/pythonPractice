@@ -5,6 +5,7 @@ from django.urls import reverse
 from hitcount.models import HitCount
 from hitcount.views import HitCountMixin
 
+
 class Post(models.Model, HitCountMixin):
     title = models.CharField(max_length=100)
     content = models.TextField()
