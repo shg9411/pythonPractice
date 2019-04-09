@@ -5,7 +5,7 @@
   <div class="media-body">
     <div class="article-metadata">
       <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
-      <small class="text-muted">{{ object.date_posted|date:"F d, Y" }} 
+      <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}
         조회수:{% load hitcount_tags %}
         {% get_hit_count for object %}
       </small>
@@ -20,6 +20,7 @@
     <p class="article-content">{{ object.content }}</p>
   </div>
 </article>
+{% if user.is_authenticated %}
 <hr>
 <h5>댓글을 남기세요</h5>
 <form action="{% url 'comment-write' pk=post.pk %}" method="POST">
@@ -27,10 +28,12 @@
   <input type="text" name="body" placeholder="댓글을 입력하세요">
   <input type="submit" value="등록" />
 </form>
+{% endif %}
 <hr>
 {% for comment in object.comments.all %}
 <p><strong><a href="{% url 'user-posts' comment.author.username %}">{{comment.author}}</a></strong> {{comment.body}}</p>
-<p>{{comment.date_posted}} <a href = "{% url 'comment-delete' post_pk=post.pk pk=comment.pk %}">삭제</a> <a href="">답글</a></p>
+<p>{{comment.date_posted}} <a href="{% url 'comment-delete' post_pk=post.pk pk=comment.pk %}">삭제</a> <a href="">답글</a>
+</p>
 <hr>
 {% empty %}
 <p>댓글이 없습니다.</p>

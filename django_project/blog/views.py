@@ -80,10 +80,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-def about(request):
-    return render(request, 'blog/about.html', {'title': 'About'})
-
-
 @login_required
 def comment_write(request, pk):
     if request.method == 'POST':
@@ -101,13 +97,12 @@ def comment_write(request, pk):
 
 @login_required
 def comment_delete(request, post_pk, pk):
-    comment = get_object_or_404(Comment, pk = pk)
+    comment = get_object_or_404(Comment, pk=pk)
 
     user = request.user
     if user != comment.author:
         messages.info(request, '글쓴이만 지울 수 있습니다.')
-        return redirect('post-detail', pk = post_pk)
+        return redirect('post-detail', pk=post_pk)
 
     comment.delete()
-    return redirect('post-detail', pk = post_pk)
-
+    return redirect('post-detail', pk=post_pk)
