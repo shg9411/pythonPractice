@@ -27,9 +27,6 @@ class Comment(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     approved = models.BooleanField(default=False)
 
-    class Meta:
-        ordering = ['-date_posted']
-
     def approved(self):
         self.approved = True
         self.save()
