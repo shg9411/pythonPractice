@@ -1,0 +1,8 @@
+
+{% if latest_posts %}
+{% for post in latest_posts %}
+    <div><a href="{{ post.get_absolute_url }}">&nbsp;{{ post.title }}&nbsp;</a></div>
+{% endfor %}
+{% else %}
+    <span>최신글이 없습니다.</span>
+{% endif %}
