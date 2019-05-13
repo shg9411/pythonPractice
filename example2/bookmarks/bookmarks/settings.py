@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'images.apps.ImagesConfig',
     'account.apps.AccountConfig',
     'crispy_forms',
     'django.contrib.admin',
+    'easy_thumbnails'
 ]
 
 MIDDLEWARE = [
@@ -139,3 +141,6 @@ EMAIL_HOST_USER = 'shg941102@gmail.com'
 EMAIL_HOST_PASSWORD = 'thd@1602'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

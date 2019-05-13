@@ -31,8 +31,8 @@
           <li {% if section == 'dashboard' %} class="list-group-item list-group-item-action bg-light" {% endif %}>
             <a href="{% url 'dashboard' %}">My dashboard</a>
           </li>
-          <li {% if section == "images" %} class="list-group-item list-group-item-action bg-light" {% endif %}>
-            <a href="#">Images</a>
+          <li {% if section == "images" %}class="selected" {% endif %}>
+            <a href="{% url 'images:list' %}">Images</a>
           </li>
           <li {% if section == "people" %} class="list-group-item list-group-item-action bg-light" {% endif %}>
             <a href="#">People</a>
@@ -85,6 +85,16 @@
       </nav>
 
       <div class="container-fluid">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li class="{{ message.tags }}">
+            {{ message|safe }}
+            <a href="#" class="close">✖</a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
         {% block content %}
         {% endblock %}
       </div>
@@ -104,7 +114,34 @@
         $("#wrapper").toggleClass("toggled");
       });
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script>
+      var csrftoken = $.cookie('csrftoken');
 
-</body>
+      function csrfSafeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.text(method));
+      }
+      $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        }
+      });
+      $(document).ready(function () {
+        {
+          %
+          block domready %
+        } {
+          %
+          endblock %
+        }
+      }); <
+      script >
 
-</html>
+        <
+        /body>
+
+        <
+        /html>
