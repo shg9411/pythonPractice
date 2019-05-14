@@ -7,38 +7,27 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-lg-3">
-
-    <h1 class="my-4">카테고리</h1>
-    <div class="list-group">
-        <a href="{% url 'shop:product_list' %}" {% if not cotegory %} class="list-group-item active" {% else %}
-            class="list-group-item" {% endif %}>All</a>
-        {% for c in categories %}
-        <a href="{{ c.get_absolute_url }}" {% if category.slug == c.slug %} class="list-group-item active" {% else %}
-            class="list-group-item" {% endif %}>{{ c.name }}</a>
-        {% endfor %}
-    </div>
-
-</div>
-<div class="col-lg-4 col-md-6 mb-4">
-    <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
     {% for product in products %}
-    <div class="card">
-        <a href="{{ product.get_absolute_url }}"><img class="card-img-top"
-                src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"></a>
-        <div class="card-body">
-            <h4 class="card-title">
-                <a href='{{ product.get_absolute_url }}'>{{ product.name }}</a>
-            </h4>
-            <h5>{{product.price}}원</h5>
-            <p class="card-text">
-                {{product.description}}
-            </p>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">조회수 : 입력할것</small>
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card border-dark h-100 w-75">
+            <a href="{{ product.get_absolute_url }}"><img class="card-img-top"
+                    src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"></a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href='{{ product.get_absolute_url }}'>{{ product.name }}</a>
+                </h4>
+                <h5>{{product.price}}원</h5>
+                <p class="card-text">
+                    {{product.description|truncatechars:100}}
+                </p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">{{product.hit}}</small>
+            </div>
         </div>
     </div>
+    {% if forloop.counter|divisibleby:4 %}
+    <div class="line"></div>
+    {% endif %}
     {% endfor %}
-</div>
 {% endblock %}
