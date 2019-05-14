@@ -128,7 +128,7 @@
         <div class="cart">
           {% with total_items=cart|length %}
           {% if cart|length > 0 %}
-          장바구니:<a href="{% url 'cart:cart_detail' %}">
+          <a href="{% url 'cart:cart_detail' %}" class = "btn btn-outline-primary">
             {{total_items}}개의 상품, 총 {{cart.get_total_price}}원
           </a>
           {% else %}
