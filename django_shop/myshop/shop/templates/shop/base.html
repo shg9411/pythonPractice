@@ -51,45 +51,6 @@
             {% endfor %}
           </ul>
         </li>
-        <li>
-          <a href="#">
-            <i class="fas fa-briefcase"></i>
-            About
-          </a>
-          <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <i class="fas fa-copy"></i>
-            Pages
-          </a>
-          <ul class="collapse list-unstyled" id="pageSubmenu">
-            <li>
-              <a href="#">Page 1</a>
-            </li>
-            <li>
-              <a href="#">Page 2</a>
-            </li>
-            <li>
-              <a href="#">Page 3</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fas fa-image"></i>
-            Portfolio
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fas fa-question"></i>
-            FAQ
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fas fa-paper-plane"></i>
-            Contact
-          </a>
-        </li>
       </ul>
     </nav>
     <div id="content">
@@ -108,17 +69,11 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Page</a>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'shop:product_list' %}">SHOP</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Page</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Page</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Page</a>
+                <a class="nav-link" href="{% url 'cart:cart_detail' %}">장바구니</a>
               </li>
             </ul>
           </div>
