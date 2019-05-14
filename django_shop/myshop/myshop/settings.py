@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'orders.apps.OrdersConfig',
     'celery',
+    'paypal.standard.ipn',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +146,7 @@ CART_SESSION_ID = 'cart'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#paypal settings
+PAYPAL_RECEIVER_EMAIL = 'shg9411@mnaver.com'
+PAYPAL_TEST = True
