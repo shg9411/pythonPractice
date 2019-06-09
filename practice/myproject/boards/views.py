@@ -8,6 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
 from django.views.generic import UpdateView, ListView
 from django.utils.decorators import method_decorator
+from django.urls import reverse
 
 
 def board_topics(request, pk):
