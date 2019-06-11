@@ -8,6 +8,12 @@
 
 <div class="row">
     <div class="col-lg-5">
+        {{message}}
+        {% if messages %}
+        <ul class="messages">
+            <li class="{{ message.tags }}">{{ messages }}</li>
+        </ul>
+        {% endif %}
         <form method="post">
             {% csrf_token %}
             {{form|crispy}}

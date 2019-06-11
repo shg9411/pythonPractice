@@ -12,4 +12,5 @@ urlpatterns = [
     path('myWork/<date>/',views.myWork_detail, name = 'myWork_detail'),
     path('myWork/<date>/add/',views.addWork, name = 'addWork'),
     path('myWork/',views.CalendarView.as_view(), name = 'myWork'),
+    path('myWork/<date>/edit/',views.editWork, name = 'editWork'),
 ]

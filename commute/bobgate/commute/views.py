@@ -8,7 +8,6 @@ from .forms import CheckForm
 from datetime import datetime
 from django.utils.safestring import mark_safe
 from .utils import Calendar
-
 # Create your views here.
 
 
@@ -28,19 +27,27 @@ def myWork_detail(request, date):
 
 
 def addWork(request, date):
-    todays = Work.objects.filter(name = request.user, start__date = date)
-    if todays is not None:
-        pass #처리해야합니다 이부분
-    if request.method == 'POST':
-        form = CheckForm(request.POST)
-        if form.is_valid():
-            work = Work(
-                name=request.user, start=form.cleaned_data['start'], end=form.cleaned_data['end'])
-            work.save()
-            return redirect('commute:myWork')
+    todays = Work.objects.filter(name=request.user, start__date=date)
+    if todays:
+        return redirect('commute:editWork', date)
     else:
-        form = CheckForm(
-            initial={'name': request.user, 'start': date, 'end': date})
+        if request.method == 'POST':
+            form = CheckForm(request.POST)
+            if form.is_valid():
+                if form.cleaned_data['start'] > form.cleaned_data['end'] or form.cleaned_data['start'].day != form.cleaned_data['end'].day:
+                    if form.cleaned_data['start'] > form.cleaned_data['end']:
+                        messages = '근무 시작 시간이 종료 시간보다 나중입니다.'
+                    else:
+                        messages = '근무 시작일과 종료일이 다릅니다.'
+                    return render(request, 'commute/blank2.html', {'form': form, 'messages': messages})
+                else:
+                    work = Work(
+                        name=request.user, start=form.cleaned_data['start'], end=form.cleaned_data['end'])
+                    work.save()
+                    return redirect('commute:myWork')
+        else:
+            form = CheckForm(
+                initial={'name': request.user, 'start': date, 'end': date})
     return render(request, 'commute/blank2.html', {'form': form})
 
 
@@ -68,3 +75,20 @@ def get_date(req_day):
         year, month = (int(x) for x in req_day.split('-'))
         return date(year, month, day=1)
     return datetime.today()
+
+
+def editWork(request, date):
+    today = Work.objects.filter(name=request.user, start__date=date).first()
+    message = '이미 오늘의 근무가 등록되어있습니다. 수정하세요.'
+    if request.method == 'POST':
+        form = CheckForm(request.POST)
+        if form.is_valid():
+            today.delete()
+            work = Work(
+                name=request.user, start=form.cleaned_data['start'], end=form.cleaned_data['end'])
+            work.save()
+            return redirect('commute:myWork')
+    else:
+        form = CheckForm(
+            initial={'name': request.user, 'start': today.start, 'end': today.end})
+    return render(request, 'commute/blank2.html', {'form': form, 'message': message})

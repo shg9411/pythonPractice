@@ -6,20 +6,29 @@
     <div class="col-lg-6 mb-4">
         <div class="row">
             <div class="col-lg-6 mb-4">
-                <div class="card bg-info text-white shadow">
+                <div class="card bg-primary text-white shadow">
                     <div class="card-body">
                         이번 달 근무내역
-                        <div class="text-white-50 small"><a type="button" class="btn btn-warning"
+                        <div class="text-white-50 small"><br><a type="button" class="btn btn-info"
                                 href="{% url 'commute:myWork' %}">바로가기</a></div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 mb-4">
-                <div class="card bg-warning text-white shadow">
+                <div class="card bg-success text-white shadow">
                     <div class="card-body">
                         오늘의 근무 추가{% now "Y-m-d" as today %}
-                        <div class="text-white-50 small"><a type="button" class="btn btn-info" id="date"
+                        <div class="text-white-50 small"><br><a type="button" class="btn btn-primary" id="date"
                                 href="{% url 'commute:addWork' today %}">{{ today }}</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card bg-info text-white shadow">
+                    <div class="card-body">
+                        오늘의 근무 수정하기{% now "Y-m-d" as today %}
+                        <div class="text-white-50 small"><br><a type="button" class="btn btn-success" id="date"
+                                href="{% url 'commute:myWork_detail' today %}">확인 및 수정</a></div>
                     </div>
                 </div>
             </div>
@@ -28,16 +37,29 @@
     <div class="col-lg-6 mb-4">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                <h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
             </div>
             <div class="card-body">
-
+                <h6>근무 수정은 당일 자정까지만 가능합니다.</h6>
+                <h6>이전의 근무 수정은 관리자를 제외하고는 불가합니다.</h6>
+                <br>
+                <h6>근무 시간은 기본 양식에서는 한시간 단위만 가능합니다.</h6>
+                <h6>한시간 단위를 원치 않으신다면 양식에 맞춰 직접 입력해주세요.</h6>
             </div>
         </div>
     </div>
 </div>
 {% else %}
-<h1><a href="{% url 'commute:login' %}">로그인하세요</a></h1>
+<div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"><a href="{% url 'commute:login' %}">로그인</a></h6>
+            </div>
+            <div class="card-body">
+                <h6>계정이 없으시다면 <a href = "{% url 'commute:register' %}">회원가입</a></h6>
+            </div>
+        </div>
+    </div>
 {% endif %}
 {% endblock %}
 

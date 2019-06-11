@@ -20,6 +20,7 @@
               {{w.start|date:"H:i"}} ~
               {{w.end|date:"H:i"}}
             </p>
+            <a href="{%url 'commute:editWork' w.start|date:'Y-m-d' %}">수정하기</a>
             {% endfor %}
             {% else %}
             근태 기록이 없습니다.<br><a href="{% url 'commute:addWork' date %}">기록하기</a>
