@@ -19,3 +19,6 @@ class Work(models.Model):
     name = models.ForeignKey(User, on_delete=models.CASCADE)
     start = models.DateTimeField()
     end = models.DateTimeField()
+
+    class Meta:
+        ordering=['start',]

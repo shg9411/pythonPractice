@@ -1,11 +1,11 @@
 {
-    "title": "SB Admin",
-    "name": "startbootstrap-sb-admin",
-    "version": "5.1.0",
+    "title": "SB Admin 2",
+    "name": "startbootstrap-sb-admin-2",
+    "version": "4.0.5",
     "scripts": {
         "start": "gulp watch"
     },
-    "description": "A one page app landing page HTML theme for Bootstrap.",
+    "description": "An open source Bootstrap 4 admin theme.",
     "keywords": [
         "css",
         "sass",
@@ -16,9 +16,9 @@
         "admin",
         "app"
     ],
-    "homepage": "https://startbootstrap.com/template-overviews/sb-admin",
+    "homepage": "https://startbootstrap.com/template-overviews/sb-admin-2",
     "bugs": {
-        "url": "https://github.com/BlackrockDigital/startbootstrap-sb-admin/issues",
+        "url": "https://github.com/BlackrockDigital/startbootstrap-sb-admin-2/issues",
         "email": "feedback@startbootstrap.com"
     },
     "license": "MIT",
@@ -28,7 +28,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/BlackrockDigital/startbootstrap-sb-admin.git"
+        "url": "https://github.com/BlackrockDigital/startbootstrap-sb-admin-2.git"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "5.8.2",
@@ -49,6 +49,6 @@
         "gulp-rename": "1.4.0",
         "gulp-sass": "4.0.2",
         "gulp-uglify": "3.0.2",
-        "merge-stream": "^1.0.1"
+        "merge-stream": "2.0.0"
     }
 }
