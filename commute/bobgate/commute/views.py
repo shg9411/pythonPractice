@@ -82,12 +82,22 @@ def editWork(request, date):
     message = '이미 오늘의 근무가 등록되어있습니다. 수정하세요.'
     if request.method == 'POST':
         form = CheckForm(request.POST)
+        print("포스트")
         if form.is_valid():
-            today.delete()
-            work = Work(
-                name=request.user, start=form.cleaned_data['start'], end=form.cleaned_data['end'])
-            work.save()
-            return redirect('commute:myWork')
+            print("폼 괜찮")
+            if form.cleaned_data['start'] > form.cleaned_data['end'] or form.cleaned_data['start'].day != form.cleaned_data['end'].day:
+                print("날짜 이상")
+                if form.cleaned_data['start'] > form.cleaned_data['end']:
+                    messages = '근무 시작 시간이 종료 시간보다 나중입니다.'
+                else:
+                    messages = '근무 시작일과 종료일이 다릅니다.'
+                return render(request, 'commute/blank2.html', {'form': form, 'messages': messages})
+            else:
+                today.delete()
+                work = Work(
+                 name=request.user, start=form.cleaned_data['start'], end=form.cleaned_data['end'])
+                work.save()
+                return redirect('commute:myWork')
     else:
         form = CheckForm(
             initial={'name': request.user, 'start': today.start, 'end': today.end})
