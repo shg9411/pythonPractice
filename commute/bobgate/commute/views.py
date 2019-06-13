@@ -3,8 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.views import generic
-from .models import Work
-from .forms import CheckForm
+from .models import Work, Board
+from .forms import CheckForm, BoardForm
 from datetime import datetime
 from django.utils.safestring import mark_safe
 from .utils import Calendar
@@ -102,3 +102,28 @@ def editWork(request, date):
         form = CheckForm(
             initial={'name': request.user, 'start': today.start, 'end': today.end})
     return render(request, 'commute/blank2.html', {'form': form, 'message': message})
+
+
+class BoardLV(generic.ListView):
+    model = Board
+    paginate_by = 6
+    ordering = ['-idx']
+
+
+class BoardDV(generic.DetailView):
+    model = Board
+
+
+def addBoard(request):
+    if request.method == 'POST':
+        form = BoardForm(request.POST, request.FILES)
+        board = Board()
+        if form.is_valid():
+            board.name = request.user
+            board.title = form.cleaned_data['title']
+            board.image = form.cleaned_data['image']
+            board.save()
+            return redirect('commute:board')
+    else:
+        form = BoardForm()
+    return render(request, 'commute/board_add.html', {'form':form})

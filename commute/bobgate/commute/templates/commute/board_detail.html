@@ -1,0 +1,38 @@
+{% extends "commute/base.html" %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        {% if user.is_authenticated %}
+        <div class="card mb-4">
+          <img class="card-img-top" src="{{board.image.url}}" alt="{{board.name}}의 근무표" style="max-width:65%">
+          <hr>
+          <div class="card-body">
+            <h2 class="card-title">{{board.name}}님의 {{board.upload|date:"Y년 m월"}} 근무표입니다.</h2>
+          </div>
+          <div class="card-footer text-muted">
+            uploaded at {{board.upload}}
+            <a href = "{% url 'commute:board' %}">목록으로</a>
+          </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="col-lg-6 mb-4">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"><a href="{% url 'commute:login' %}">로그인</a></h6>
+        </div>
+        <div class="card-body">
+            <h6>계정이 없으시다면 <a href="{% url 'commute:register' %}">회원가입</a></h6>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block script %}
+<script>
+
+</script>
+{% endblock %}

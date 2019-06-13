@@ -22,3 +22,11 @@ class Work(models.Model):
 
     class Meta:
         ordering=['start',]
+
+
+class Board(models.Model):
+    idx = models.AutoField(primary_key=True)
+    title = models.CharField(max_length = 25)
+    name = models.ForeignKey(User, on_delete=models.CASCADE)
+    upload = models.DateTimeField(auto_now_add = True)
+    image = models.ImageField(upload_to='commute/%Y/%m/',blank=False)

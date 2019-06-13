@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employee, Department, Work
+from .models import Employee, Department, Work, Board
 
 
 @admin.register(Employee)
@@ -16,3 +16,9 @@ class DepartmentAdmin(admin.ModelAdmin):
 @admin.register(Work)
 class WorkAdmin(admin.ModelAdmin):
     list_display = ['name']
+
+
+@admin.register(Board)
+class BoardAdmin(admin.ModelAdmin):
+    list_display = ['name','upload']
+    ordering = ['-idx']
