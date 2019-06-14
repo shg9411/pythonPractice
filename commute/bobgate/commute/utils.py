@@ -18,8 +18,9 @@ class Calendar(HTMLCalendar):
         work_per_day = works.filter(start__day=day)
         d = ''
         if work_per_day:
-            d += '<li>{} ~ {}</li>'.format(work_per_day[0].start.time(),work_per_day[0].end.time())
-            Calendar.time +=work_per_day[0].end-work_per_day[0].start
+            d += '<li>{} ~ {}</li>'.format(
+                work_per_day[0].start.time(), work_per_day[0].end.time())
+            Calendar.time += work_per_day[0].end-work_per_day[0].start
 
         if day != 0:
             return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"
@@ -36,7 +37,7 @@ class Calendar(HTMLCalendar):
     # filter events by year and month
     def formatmonth(self, withyear=True, work=None):
         works = work
-        cal = f'<table border="0" cellpadding="0" cellspacing="0" class="calendar">\n'
+        cal = f'<table border="0" cellpadding="0" cellspacing="0" class="calendar table">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
         cal += f'{self.formatweekheader()}\n'
         for week in self.monthdays2calendar(self.year, self.month):
